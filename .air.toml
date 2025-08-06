@@ -1,0 +1,70 @@
+# .air.toml - Optimized configuration for reliable reloading
+
+root = "."
+testdata_dir = "testdata"
+tmp_dir = "tmp"
+
+[build]
+  # Binary output path
+  bin = "./tmp/main"
+  
+  # Build command (with verbose flags for debugging)
+  cmd = "go build -v -o ./tmp/main ./cmd/main.go"
+  
+  # Delay after each build (increase if you have caching issues)
+  delay = 2000
+  
+  # Stop running old binary when build errors occur
+  stop_on_root = false
+  
+  # Send interrupt signal before killing process
+  send_interrupt = true
+  
+  # Delay after sending interrupt signal
+  kill_delay = "0s"
+  
+  # Show log of restarting the app
+  log = "build-errors.log"
+  
+  # Force rebuild even if no changes detected
+  force_poll = false
+  
+  # Full rebuild instead of incremental
+  full_bin = ""
+  
+  # Arguments to pass to your binary
+  args_bin = []
+  
+  # Environment variables
+  env_vars = []
+  
+  # Include/exclude patterns
+  include_ext = ["go", "tpl", "tmpl", "html", "env"]
+  exclude_dir = ["assets", "tmp", "vendor", "testdata", "node_modules", ".git", ".vscode", ".idea"]
+  exclude_file = []
+  exclude_regex = ["_test.go"]
+  exclude_unchanged = false
+  
+  # Follow symlinks
+  follow_symlink = false
+  
+  # Watch these directories for changes
+  include_dir = []
+
+[log]
+  # Show log time
+  time = true
+  
+  # Only show logs when app is restarting
+  main_only = false
+
+[color]
+  # Customize colors
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[misc]
+  # Delete tmp directory on exit
+  clean_on_exit = false

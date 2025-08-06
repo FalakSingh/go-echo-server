@@ -1,0 +1,10 @@
+mongodb:
+  uri: 'mongodb://localhost:27017'
+  name: 'socialdb'
+
+server:
+  port: '4000'
+
+jwt:
+  secret: 'q1hDRhox3VJVYJFfjkTjHmEyMKaG-CqGe9htFWYQvcd5GJXxA0NfPr4pTFv6_rdhK-5FFvzcorILiZaY2Ga1ZQ=='
+  expires: '7'
