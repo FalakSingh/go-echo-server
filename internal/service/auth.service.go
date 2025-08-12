@@ -4,10 +4,12 @@ import (
 	appError "echo-server/internal/helper/errors"
 	"echo-server/internal/model"
 	"echo-server/internal/repository"
+	"fmt"
 )
 
 type AuthService interface {
 	CreateUser(payload *model.User) error
+	LoginUser(payload *model.User) error
 }
 
 type authSvc struct {
@@ -32,5 +34,15 @@ func (s *authSvc) CreateUser(payload *model.User) error {
 }
 
 func (s *authSvc) LoginUser(payload *model.User) error {
+	fmt.Printf("payload: %+v", payload)
+	user, err := s.userRepo.FindByEmail(payload.Email)
+	fmt.Printf("user: %+v", user)
+	if err != nil {
+		return err
+	}
+	if user == nil {
+		return appError.NewBadRequest("User not found")
+	}
+	*payload = *user
 	return nil
 }

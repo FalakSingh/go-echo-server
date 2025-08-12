@@ -3,6 +3,6 @@ package router
 import "github.com/labstack/echo/v4"
 
 func Init(e *echo.Echo) {
-	router := e.Group("/api")
+	router := e.Group("/v1/api")
 	AuthRouter(router)
 }

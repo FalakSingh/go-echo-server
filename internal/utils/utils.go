@@ -24,6 +24,6 @@ func CreateJWT(payload map[string]any) (string, error) {
 	}
 	maps.Copy(claims, payload)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(config.Env.JWT_SECRET))
+	return token.SignedString([]byte(config.Env.JWT_SECRET))		
 }
 
